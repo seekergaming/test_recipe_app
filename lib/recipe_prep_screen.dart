@@ -123,18 +123,18 @@ class _RecipePrepScreenState extends State<RecipePrepScreen> {
     );
   }
 
-  // Method to open bottom bar
-  openButtomBar(var recipe) {
-    showModalBottomSheet(
-        context: context,
-        builder: (BuildContext context) {
-          return SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(10),
-              child: Text(recipe.toString()),
-            ),
-          );
-        });
+  // Show loading
+  void showLoading() {
+    setState(() {
+      isLoading = true;
+    });
+  }
+
+  // Hide loading
+  void hideLoading() {
+    setState(() {
+      isLoading = false;
+    });
   }
 
   // Method to pick image from gallery
@@ -146,6 +146,20 @@ class _RecipePrepScreenState extends State<RecipePrepScreen> {
         image = picker;
       });
     }
+  }
+
+  // Method to open bottom bar
+  void openButtomBar(var recipe) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Text(recipe.toString()),
+            ),
+          );
+        });
   }
 
   // Method to generate recipe by Gemini
